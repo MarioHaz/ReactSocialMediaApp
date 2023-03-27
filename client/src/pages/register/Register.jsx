@@ -20,7 +20,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:8000/api/auth/register", inputs);
+      await axios.post("http://localhost:5000/api/auth/register", inputs);
     } catch (err) {
       setErr(err.response.data);
     }

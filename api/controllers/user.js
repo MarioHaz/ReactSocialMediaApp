@@ -3,13 +3,15 @@ import jwt from "jsonwebtoken";
 
 export const getUser = (req, res) => {
   const userId = req.params.userId;
-  const q = "SELECT * FROM users WHERE id=?";
 
-  db.query(q, [userId], (err, data) => {
-    if (err) return res.status(500).json(err);
-    const { password, ...info } = data[0];
-    return res.json(info);
-  });
+  const q = "SELECT * FROM users WHERE id=?";
+  
+    db.query(q, [userId], (err, data) => {
+      if (err) return res.status(500).json(err);
+      const { password, ...info } = data[0];
+      return res.json(info);
+    });
+  
 };
 
 export const updateUser = (req, res) => {
@@ -21,22 +23,23 @@ export const updateUser = (req, res) => {
 
     const q =
       "UPDATE users SET `name`=?,`ciudad`=?,`website`=?,`profilePic`=?,`coverPic`=? WHERE id=? ";
-
-    db.query(
-      q,
-      [
-        req.body.name,
-        req.body.ciudad,
-        req.body.website,
-        req.body.coverPic,
-        req.body.profilePic,
-        userInfo.id,
-      ],
-      (err, data) => {
-        if (err) res.status(500).json(err);
-        if (data.affectedRows > 0) return res.json("Updated!");
-        return res.status(403).json("You can update only your post!");
-      }
-    );
-  });
+    
+      db.query(
+        q,
+        [
+          req.body.name,
+          req.body.ciudad,
+          req.body.website,
+          req.body.coverPic,
+          req.body.profilePic,
+          userInfo.id,
+        ],
+        (err, data) => {
+          if (err) res.status(500).json(err);
+          if (data.affectedRows > 0) return res.json("Updated!");
+          return res.status(403).json("You can update only your post!");
+        }
+      );
+    });
+  
 };
