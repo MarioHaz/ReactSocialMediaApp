@@ -16,7 +16,7 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Share from './components/share/Share';
+import BookData from './Data.json'
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -29,7 +29,7 @@ function App() {
     return (
       <QueryClientProvider client={queryClient}>
         <div className={`theme-${darkMode ? "dark" : "light"}`}>
-          <Navbar />
+          <Navbar data={BookData}/>
           <div style={{ display: "flex" }}>
             {/* <LeftBar /> */}
             <div style={{ flex: 6 }}>

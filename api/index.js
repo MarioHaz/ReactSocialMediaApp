@@ -9,6 +9,7 @@ import relationshipRoutes from "./routes/relationships.js";
 import cors from "cors";
 import multer from "multer";
 import cookieParser from "cookie-parser";
+import { db } from "./connect.js";
 
 //middlewares
 app.use((req, res, next) => {
@@ -46,6 +47,10 @@ app.use("/api/comments", commentRoutes);
 app.use("/api/likes", likeRoutes);
 app.use("/api/relationships", relationshipRoutes);
 
-app.listen(8000, () => {
+app.get("/",(req,res) =>{
+  res.json(db)
+})
+
+app.listen(7000, () => {
   console.log("API working!");
 });
