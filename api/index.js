@@ -51,6 +51,6 @@ app.get("/",(req,res) =>{
   res.json(db)
 })
 
-app.listen(7000, () => {
+app.listen(5000, () => {
   console.log("API working!");
 });
